@@ -3,9 +3,20 @@ const cors = require('cors');
 const helmet = require('helmet');
 const server = express();
 
+const { authenticate } = require('../helpers/00-auth/auth-middleware');
+
+const authRouter = require('../helpers/00-auth/auth-router')
+const userRouter = require('../helpers/01-users/user-router');
+const postRouter = require('../helpers/02-posts/post-router')
+
+
 server.use(cors())
 server.use(express.json());
 server.use(helmet());
+
+server.use('/auth', authRouter);
+server.use('/users', userRouter);
+server.use('/posts', postRouter)
 
 server.get('/', (req, res) => {
     res.send("Server is up and running")
