@@ -8,8 +8,8 @@ const { authenticate } = require('../helpers/00-auth/auth-middleware');
 const authRouter = require('../helpers/00-auth/auth-router')
 const userRouter = require('../helpers/01-users/user-router');
 const postRouter = require('../helpers/02-posts/post-router')
-const commentRouter = require('../helpers/03-comments/post-router')
-const replyRouter = require('../helpers/04-replies/post-router')
+const commentRouter = require('../helpers/03-comments/comment-router')
+const replyRouter = require('../helpers/04-replies/reply-router')
 
 
 server.use(cors())
