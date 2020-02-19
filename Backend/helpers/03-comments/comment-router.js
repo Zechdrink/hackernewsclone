@@ -30,6 +30,17 @@ router.post('/', async (req, res) => {
     }
 })
 
+router.get('/:post_id/post', async (req, res) => {
+
+    try {
+        comments = await Comment.getPostComments(req.params.post_id)
+        res.status(200).json(comments)
+    } catch(error){
+        res.status(500).json(error)
+    }
+
+})
+
 router.delete('/:id', async (req, res) => {
     try {
         count = await Comment.destroy(req.params.id)

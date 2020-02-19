@@ -24,6 +24,12 @@ exports.up = function(knex) {
 
         tbl.string('link', 255)
 
+        tbl.string('author', 255)
+
+        tbl.integer('likes').defaultTo(0)
+
+        tbl.dateTime('created_at').notNullable().defaultTo(knex.raw('CURRENT_TIMESTAMP'))
+
         tbl.integer('user_id')
             .notNullable()
             .unsigned()
@@ -80,6 +86,27 @@ exports.up = function(knex) {
         .onDelete('CASCADE')
         .onUpdate('CASCADE')
 
+    })
+
+    .createTable('like', (tbl) => {
+
+        tbl.increments();
+
+        tbl.integer('user_id')
+        .notNullable()
+        .unsigned()
+        .references('id')
+        .inTable('user')
+        .onDelete('CASCADE')
+        .onUpdate('CASCADE')
+
+        tbl.integer('post_id')
+        .notNullable()
+        .unsigned()
+        .references('id')
+        .inTable('post')
+        .onDelete('CASCADE')
+        .onUpdate('CASCADE')
     })
 
 };

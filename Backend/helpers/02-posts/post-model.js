@@ -4,7 +4,8 @@ module.exports = {
     find,
     findById,
     add,
-    destroy
+    destroy,
+    likeUpdater
 }
 
 function find(){
@@ -24,4 +25,10 @@ async function add(post){
 
 function destroy(id){
     return db("post").where({ id }).del()
+}
+
+function likeUpdater(id, changes){
+    return db('post')
+    .where({ id })
+    .update({ likes: changes })
 }

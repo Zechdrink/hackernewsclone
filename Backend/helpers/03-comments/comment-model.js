@@ -4,7 +4,8 @@ module.exports = {
     find,
     findById,
     add,
-    destroy
+    destroy,
+    getPostComments
 }
 
 function find(){
@@ -24,4 +25,11 @@ async function add(comment){
 
 function destroy(id){
     return db("comment").where({ id }).del()
+}
+
+function getPostComments(postId){   
+    return db("comment")
+    .join("post", "post.id", "comment.post_id")
+    .select("comment.*")
+    .where("comment.post_id", postId)
 }

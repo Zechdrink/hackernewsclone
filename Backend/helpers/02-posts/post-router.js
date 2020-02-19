@@ -1,6 +1,7 @@
 router = require('express').Router();
 
 const Post = require('./post-model');
+const User = require('../01-users/user-model')
 
 
 router.get('/', async (req, res) => {
@@ -21,9 +22,10 @@ router.get('/:id', async (req, res) => {
     }
 })
 
-router.post('/', async (req, res) => {
+router.post('/:user_id', async (req, res) => {
     try{
-        posts = await Post.add(req.body)
+        user = await User.findById(req.params.user_id)
+        posts = await Post.add({title: req.body.title, link: req.body.link, author: user.username, user_id: req.params.user_id})
         res.status(200).json(posts)
     } catch(error){
         res.status(500).json(error)
