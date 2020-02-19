@@ -1,0 +1,49 @@
+.posts-container {
+    width: 80%;
+    margin: 0 auto;
+
+    .whole-post {
+        display: flex;
+        flex-direction: column;
+        border: 1px solid black;
+        border-top: none;
+        background: rgb(248, 246, 239);
+    }
+
+    .post {
+        display: flex;
+        text-align: center;
+        padding-left: 2rem;
+
+        * {
+            padding: 0px 3px;
+        }
+    }
+
+    .post-info {
+        display: flex;
+        padding-left: 3rem;
+
+        * {
+            padding: 0px 15px;
+        }
+
+        span {
+            color: red;
+        }
+    }
+
+    a {
+        text-decoration: none;
+    }
+}
+
+.comment-input {
+    padding: 0rem 0rem 2rem 0rem !important;
+
+    textarea {
+        resize: none;
+        height: 5rem;
+        width: 15rem;
+    }
+}
